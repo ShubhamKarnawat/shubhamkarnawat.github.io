@@ -44,4 +44,11 @@ $sidebar-screen-min-width   : 1024px;
     --global-text-color                 : #{$dark-gray};
     --global-text-color-light           : #{$light-gray};
     --global-thead-color                : #{$lighter-gray};
+    
+    /* Academic content specific colors */
+    --academic-paper-title-color        : #bb2815;
+    --academic-author-link-color        : #bb2815;
+    --academic-presentation-text-color  : #{$dark-gray};
+    --academic-button-bg-color          : #f0f0f0;
+    --academic-button-border-color      : #ccc;
 }

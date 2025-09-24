@@ -7,18 +7,18 @@ redirect_from:
   - /about.html
 ---
 
-I am a PhD candidate in Economics at the University of California, Irvine, specializing in econometrics and quantitative methods. My research focuses on developing novel econometric techniques, particularly in the areas of **Bayesian methods**, **Quantile regression**, and **Panel data analysis**.
+I am a PhD candidate in Economics at the University of California, Irvine, specializing in econometrics and quantitative methods. My research focuses on developing novel econometric techniques, particularly in the areas of ## Bayesian methods, ## Quantile regression, and ## Panel data analysis.
 
 ## Research Interests
 
 My primary research interests include:
 
-
-- **Computational Methods**: MCMC estimation techniques and efficient algorithms for complex econometric models
 - **Quantile Regression**: Developing flexible Bayesian approaches to quantile regression, including applications to ordinal models and panel data
+<!-- - **Econometric Theory**: Advancing methodological approaches in econometrics, particularly for non-linear and discrete choice models   -->
+- **Computational Methods**: MCMC estimation techniques and efficient algorithms for complex econometric models
 - **Applied Econometrics**: Applications in urban economics, housing markets, and public policy analysis
 
-<!-- ## Current Research
+## Current Research
 
 I am currently working on several research projects that push the boundaries of econometric methodology:
 
@@ -47,11 +47,11 @@ I have extensive teaching experience as a Teaching Assistant at UC Irvine, havin
 
 ## Academic Background
 
-I am pursuing my doctoral degree in Economics at UC Irvine, where I have developed expertise in both theoretical and applied econometrics. My work combines rigorous mathematical foundations with practical applications to real-world economic problems. -->
+I am pursuing my doctoral degree in Economics at UC Irvine, where I have developed expertise in both theoretical and applied econometrics. My work combines rigorous mathematical foundations with practical applications to real-world economic problems.
 
-<!-- ## Contact
+## Contact
 
-I am always interested in discussing research collaborations and opportunities. Feel free to reach out via email or connect with me through the links in the sidebar. -->
+I am always interested in discussing research collaborations and opportunities. Feel free to reach out via email or connect with me through the links in the sidebar.
 
 ---
 

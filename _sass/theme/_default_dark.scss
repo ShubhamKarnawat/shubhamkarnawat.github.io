@@ -12,12 +12,12 @@ $background                 : #474747;
 $background-light           : mix(#fff, $background, 80%);
 $background-lighter         : mix(#fff, $background, 90%);
 $text                       : #ffffff;
-$link                       : #0ea1c5;
+$link                       : #5fb3c7;
 $link-dark                  : mix(#000, $link, 25%);
 $link-light                 : mix(#fff, $link, 25%);
 
 /* Color codes used for the site */
-$danger-color               : #ee5f5b;
+$danger-color               : #cc4c48;
 $info-color                 : #2f7f93;
 $notice-color               : #7a8288;
 $success-color              : #62c462;
@@ -51,4 +51,11 @@ html[data-theme="dark"] {
     --global-text-color                 : #{$text};
     --global-text-color-light           : #f3f3f3;
     --global-thead-color                : #{$background-lighter};
+    
+    /* Academic content specific colors */
+    --academic-paper-title-color        : #{$link};
+    --academic-author-link-color        : #{$link};
+    --academic-presentation-text-color  : #{$text};
+    --academic-button-bg-color          : #{$background-light};
+    --academic-button-border-color      : #{$light-gray};
 }

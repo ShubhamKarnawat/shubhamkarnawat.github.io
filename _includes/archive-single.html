@@ -12,73 +12,87 @@
   {% assign title = post.title %}
 {% endif %}
 
-<div class="{{ include.type | default: "list" }}__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    {% if include.type == "grid" and teaser %}
-      <div class="archive__item-teaser">
-        <img src=
-          {% if teaser contains "://" %}
-            "{{ teaser }}"
+
+<div style="margin-bottom: 15px;">
+  {% if post.type == "Testimonial" %}
+    <!-- Display testimonial content as quotes -->
+    <div style="color: var(--academic-presentation-text-color); line-height: 1.4; font-size: 15px;">
+      "{{ post.content | strip | remove: '<p>' | remove: '</p>' }}" {% if post.course %}{{ post.course }}{% if post.quarter %}, {{ post.quarter }}{% endif %}{% endif %}
+    </div>
+  {% else %}
+    <!-- Standard publication/teaching format -->
+    {% if post.paperurl %}<a href="{{ post.paperurl }}" target="_blank" style="color: var(--academic-paper-title-color); text-decoration: none; {% if post.title_font_size %}font-size: {{ post.title_font_size }};{% endif %}">{{ title }}</a>{% else %}<span style="{% if post.title_font_size %}font-size: {{ post.title_font_size }};{% endif %}">{{ title }}</span>{% endif %}
+    {% if post.coauthors %}
+    with 
+    {% if post.coauthor_urls %}
+      {% assign coauthor_names = post.coauthors | remove: "with " | split: " and " %}
+      {% for i in (0..coauthor_names.size) %}
+        {% if coauthor_names[i] %}
+          {% if post.coauthor_urls[i] %}
+            <a href="{{ post.coauthor_urls[i] }}" target="_blank" style="color: var(--academic-author-link-color); text-decoration: none;">{{ coauthor_names[i] | strip }}</a>
           {% else %}
-            "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+            {{ coauthor_names[i] | strip }}
           {% endif %}
-          alt="">
-      </div>
-    {% endif %}
-
-    <h2 class="archive__item-title" itemprop="headline">
-      {% if post.link %}
-        <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-      {% else %}
-        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
-      {% endif %}
-    </h2>
-    
-    {% if post.read_time %}
-      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
-    {% endif %}
-
-        {% if post.collection == 'teaching' %}
-          <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif post.collection == 'publications' %}
-          <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif post.date %}
-         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
+          {% unless forloop.last %}{% if forloop.index == coauthor_names.size %}{% else %} and {% endif %}{% endunless %}
         {% endif %}
+      {% endfor %}
+    {% elsif post.coauthor_url %}
+      <a href="{{ post.coauthor_url }}" target="_blank" style="color: var(--academic-author-link-color); text-decoration: none;">{{ post.coauthors | remove: "with " }}</a>
+    {% else %}
+      {{ post.coauthors | remove: "with " }}
+    {% endif %}{% if post.venue %},{% endif %}
+  {% endif %}
+  {% if post.venue %}<em>{{ post.venue }}</em>{% if post.volume %}, {{ post.volume }}{% endif %}{% if post.pages %}, {{ post.pages }}{% endif %}{% if post.venue and post.date and post.date != "1900-01-01" %}{% if post.collection == "teaching" and post.terms %}, {{ post.terms }}{% else %}, {{ post.date | date: "%Y" }}{% endif %}{% endif %}.{% endif %}
+  {% if post.collection == "teaching" and post.terms and post.venue == nil and post.type != "Guest Lecture" %}{{ post.terms }}.{% endif %}
+  {% if post.type == "Guest Lecture" and post.course %}{{ post.course }}{% if post.terms %} {{ post.terms }}{% endif %}.{% endif %}
+  
 
-    {% if post.excerpt and site.read_more != 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
-    {% elsif post.excerpt and site.read_more == 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
+  
+  <br>
+  <div style="margin-top: 8px;">
+    {% if post.paperurl and post.show_pdf_button != false %}
+      <a href="{{ post.paperurl }}" target="_blank" style="background-color: var(--academic-button-bg-color); padding: 3px 8px; border: 1px solid var(--academic-button-border-color); text-decoration: none; font-size: 12px; margin-right: 5px;">PDF</a>
     {% endif %}
-    
-    {% if post.citation and post.paperurl and post.slidesurl and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.citation and post.paperurl and post.slidesurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.citation and post.paperurl and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.citation and post.paperurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a></p>
-    {% elsif post.citation and post.slidesurl and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl}}">Download Bibtex</a></p>
-    {% elsif post.citation and post.slidesurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.citation and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.citation %}
-      <p>Recommended citation: {{ post.citation }}</p>
-    {% elsif post.paperurl and post.bibtexurl %}
-      <p><a href=" {{ post.paperurl }} ">Download Paper</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.paperurl %}
-      <p><a href=" {{ post.paperurl }} ">Download Paper</a></p>
-    {% elsif post.slidesurl and post.bibtexurl %}
-      <p><a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.slidesurl %}
-      <p><a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.bibtexurl %}
-      <p><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
+    {% if post.slidesurl %}
+      <a href="{{ post.slidesurl }}" target="_blank" style="background-color: var(--academic-button-bg-color); padding: 3px 8px; border: 1px solid var(--academic-button-border-color); text-decoration: none; font-size: 12px; margin-right: 5px;">Slides</a>
     {% endif %}
-
-  </article>
+    {% if post.preprinturl %}
+      <a href="{{ post.preprinturl }}" target="_blank" style="background-color: var(--academic-button-bg-color); padding: 3px 8px; border: 1px solid var(--academic-button-border-color); text-decoration: none; font-size: 12px; margin-right: 5px;">Preprint</a>
+    {% endif %}
+    {% if post.dataurl %}
+      <a href="{{ post.dataurl }}" target="_blank" style="background-color: var(--academic-button-bg-color); padding: 3px 8px; border: 1px solid var(--academic-button-border-color); text-decoration: none; font-size: 12px; margin-right: 5px;">Data</a>
+    {% endif %}
+    {% if post.codeurl %}
+      <a href="{{ post.codeurl }}" target="_blank" style="background-color: var(--academic-button-bg-color); padding: 3px 8px; border: 1px solid var(--academic-button-border-color); text-decoration: none; font-size: 12px; margin-right: 5px;">Code</a>
+    {% endif %}
+  </div>
+  
+  {% if post.abstract %}
+  <div style="margin-top: 15px;">
+    <strong>Abstract:</strong>
+    <div style="font-size: {% if post.abstract_font_size %}{{ post.abstract_font_size }}{% else %}14px{% endif %}; color: {% if post.abstract_color and post.abstract_color != '#000000' %}{{ post.abstract_color }}{% else %}var(--global-text-color, #666){% endif %}; line-height: 1.4; margin-top: 5px;">
+      {{ post.abstract }}
+    </div>
+  </div>
+  {% endif %}
+  
+  {% if post.presentations %}
+  <div style="margin-top: 15px;">
+    <strong style="color: var(--academic-presentation-text-color); font-size: 15px;">Presented at:</strong>
+    <div style="margin-top: 5px;">
+      {% for presentation in post.presentations %}
+        <div style="font-size: 14px; color: var(--academic-presentation-text-color); margin-bottom: 3px;">
+          {% if presentation.link %}
+            <a href="{{ presentation.link }}" target="_blank" style="color: var(--academic-author-link-color); text-decoration: none;">{{ presentation.venue }}</a>
+          {% else %}
+            {{ presentation.venue }}
+          {% endif %}
+          {% if presentation.location %}, {{ presentation.location }}{% endif %}
+          {% if presentation.date_range %}, {{ presentation.date_range }}{% elsif presentation.date %}, {{ presentation.date | date: '%B %Y' }}{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+{% endif %}
 </div>

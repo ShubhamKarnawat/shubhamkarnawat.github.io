@@ -25,18 +25,22 @@
           alt="">
       </div>
     {% endif %}
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title" itemprop="headline" style="{% if post.title_font_size %}font-size: {{ post.title_font_size }};{% endif %}">
       {% if post.link %}
-        <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+        <a href="{{ post.link }}" style="color: {% if post.title_color %}{{ post.title_color }}{% else %}var(--academic-paper-title-color){% endif %}; text-decoration: none;">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
       {% else %}
-        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+        <a href="{{ base_path }}{{ post.url }}" rel="permalink" style="color: {% if post.title_color %}{{ post.title_color }}{% else %}var(--academic-paper-title-color){% endif %}; text-decoration: none;">{{ title }}</a>
       {% endif %}
     </h2>
     {% if post.read_time %}
       <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}
-    {% if post.date %}<p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {{ post.date | date: '%B %d, %Y' }}</p>{% endif %}
-    {% if post.venue %}<p class="archive__item-excerpt" itemprop="description">{{post.type}}, {{ post.venue }},  {{post.location}} {% endif %}
-    {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>{% endif %}
+    {% if post.date_range %}
+      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {{ post.date_range }}</p>
+    {% elsif post.date %}
+      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {{ post.date | date: '%B %d, %Y' }}</p>
+    {% endif %}
+    {% if post.venue %}<p class="archive__item-excerpt" itemprop="description" style="{% if post.venue_font_size %}font-size: {{ post.venue_font_size }};{% endif %} {% if post.venue_color %}color: {{ post.venue_color }};{% endif %}">{{ post.venue }}{% if post.location %}, {{post.location}}{% endif %}</p> {% endif %}
+    {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description" style="{% if post.abstract_font_size %}font-size: {{ post.abstract_font_size }};{% else %}14px;{% endif %} {% if post.abstract_color %}color: {{ post.abstract_color }};{% else %}color: var(--global-text-color, #666);{% endif %} line-height: 1.4; margin-top: 10px;">{{ post.excerpt | markdownify }}</p>{% endif %}
   </article>
 </div>

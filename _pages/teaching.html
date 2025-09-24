@@ -7,6 +7,38 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.teaching reversed %}
+<h2>Guest Lectures</h2>
+
+{% assign guest_lectures = site.teaching | where: "type", "Guest Lecture" | sort: "date" | reverse %}
+{% for post in guest_lectures %}
   {% include archive-single.html %}
 {% endfor %}
+
+{% if guest_lectures.size == 0 %}
+<p><em>No guest lectures listed yet.</em></p>
+{% endif %}
+
+<h2>Teaching Assistant - Graduate Courses</h2>
+
+{% assign grad_courses = site.teaching | where: "type", "Teaching Assistant - Graduate" | sort: "date" | reverse %}
+{% for post in grad_courses %}
+  {% include archive-single.html %}
+{% endfor %}
+
+<h2>Teaching Assistant - Undergraduate Courses</h2>
+
+{% assign undergrad_courses = site.teaching | where: "type", "Teaching Assistant - Undergraduate" | sort: "date" | reverse %}
+{% for post in undergrad_courses %}
+  {% include archive-single.html %}
+{% endfor %}
+
+<h2>Selected Testimonials</h2>
+
+{% assign testimonials = site.teaching | where: "type", "Testimonial" | sort: "date" | reverse %}
+{% for post in testimonials %}
+  {% include archive-single.html %}
+{% endfor %}
+
+{% if testimonials.size == 0 %}
+<p><em>No testimonials listed yet.</em></p>
+{% endif %}

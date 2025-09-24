@@ -1,20 +1,14 @@
 ---
-title: "Teaching experience 1"
+title: "Course Name (COURSE CODE)"
 collection: teaching
-type: "Undergraduate course"
-permalink: /teaching/2014-spring-teaching-1
-venue: "University 1, Department"
-date: 2014-01-01
-location: "City, Country"
+type: "Teaching Assistant"
+permalink: /teaching/course-name
+venue: "University of California Irvine"
+date: 2024-01-01
+location: "Irvine, CA"
+terms: "Fall 2023, Spring 2024, Fall 2024"
 ---
 
-This is a description of a teaching experience. You can use markdown like any other post.
+Terms taught: {{ page.terms }}
 
-Heading 1
-======
-
-Heading 2
-======
-
-Heading 3
-======
+Description of the course and your role as a Teaching Assistant.
