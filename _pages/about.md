@@ -7,16 +7,16 @@ redirect_from:
   - /about.html
 ---
 
-I am a PhD candidate in Economics at the University of California, Irvine, specializing in econometrics and quantitative methods. My research focuses on developing novel econometric techniques, particularly in the areas of **Bayesian methods**, **Quantile regression**, and **Panel data analysis**.
+I am a PhD candidate in Economics at the University of California, Irvine, specializing in econometrics and quantitative methods. My research focuses on developing novel econometric techniques, particularly in the areas of **Bayesian methods**, **Quantile regression**, and **Panel data analysis**. I am on the Economics Job Market for 2025-2026 (see [Research](/research/) for my job market paper).
 
 ## Research Interests
 
 My primary research interests include:
 
 
-- **Computational Methods**: MCMC estimation techniques and efficient algorithms for complex econometric models
-- **Quantile Regression**: Developing flexible Bayesian approaches to quantile regression, including applications to ordinal models and panel data
-- **Applied Econometrics**: Applications in urban economics, housing markets, and public policy analysis
+- **Computational Methods**: MCMC estimation techniques and efficient algorithms for complex econometric models.
+- **Quantile Regression**: Developing flexible Bayesian approaches to quantile regression, including applications to ordinal models and panel data.
+- **Applied Econometrics**: Applications in housing markets and public policy analysis.
 
 <!-- ## Current Research
 

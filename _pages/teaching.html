@@ -18,14 +18,16 @@ author_profile: true
 <p><em>No guest lectures listed yet.</em></p>
 {% endif %}
 
-<h2>Teaching Assistant - Graduate Courses</h2>
+<h2>Teaching Assistant</h2>
+
+<p><strong>Graduate Courses</strong></p>
 
 {% assign grad_courses = site.teaching | where: "type", "Teaching Assistant - Graduate" | sort: "date" | reverse %}
 {% for post in grad_courses %}
   {% include archive-single.html %}
 {% endfor %}
 
-<h2>Teaching Assistant - Undergraduate Courses</h2>
+<p><strong>Undergraduate Courses</strong></p>
 
 {% assign undergrad_courses = site.teaching | where: "type", "Teaching Assistant - Undergraduate" | sort: "date" | reverse %}
 {% for post in undergrad_courses %}
