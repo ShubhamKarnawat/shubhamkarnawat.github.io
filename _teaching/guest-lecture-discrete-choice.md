@@ -2,6 +2,7 @@
 title: "\"Discrete Choice Models\""
 collection: teaching
 type: "Guest Lecture"
+level: "Undergraduate"
 permalink: /teaching/discrete-choice-models
 course: "Econometrics II (ECON 123B)"
 #venue: "University of California Irvine"

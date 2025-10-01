@@ -2,10 +2,11 @@
 title: "\"Flexible Bayesian Quantile Regression\""
 collection: teaching
 type: "Guest Lecture"
-permalink: /teaching/flexible-bayesian-quantile-regression
+level: "Graduate"
+permalink: /teaching/bayesian-quantile-regression
 course: "Discrete Choice Econometrics (ECON 223A)"
 #venue: "University of California Irvine"
-date: 2022-03-01
+date: 2022-02-01
 location: "Irvine, CA"
 terms: "Winter 2022"
 ---

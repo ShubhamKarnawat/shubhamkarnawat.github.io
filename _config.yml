@@ -25,7 +25,7 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Shubham Karnawat"
-  pronouns         : "He/Him"  
+  pronouns         : # "He/Him"  
   bio              : # "Short biography for the left-hand sidebar"
   location         : #"Irvine"
   employer         : "University of California Irvine"

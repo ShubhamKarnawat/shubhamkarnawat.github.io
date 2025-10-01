@@ -7,7 +7,7 @@ author_profile: true
 
 The best way to get in touch with me is via email or dropping me a message here. Please feel free to reach out!
 
-**Email:** shubham.karnawat(at)uci.edu
+**Email:** shubham.karnawat@uci.edu
 
 <br><br>
 ## Send me a feedback
