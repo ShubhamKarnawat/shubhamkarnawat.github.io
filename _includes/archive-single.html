@@ -17,7 +17,7 @@
   {% if post.type == "Testimonial" %}
     <!-- Display testimonial content as quotes -->
     <div style="color: var(--academic-presentation-text-color); line-height: 1.4; font-size: 15px;">
-      "{{ post.content | strip | remove: '<p>' | remove: '</p>' }}" {% if post.course %}{{ post.course }}{% if post.quarter %}, {{ post.quarter }}{% endif %}{% endif %}
+      "{{ post.content | strip | remove: '<p>' | remove: '</p>' }}" {% if post.course %}{% assign clean_course = post.course | split: '(' | first | strip %}{{ clean_course }}{% if post.quarter %}, {{ post.quarter }}{% endif %}{% endif %}
     </div>
   {% else %}
     <!-- Standard publication/teaching format -->
@@ -54,7 +54,10 @@
   {% endif %}
   {% if post.venue %}<em>{{ post.venue }}</em>{% if post.volume %}, {{ post.volume }}{% endif %}{% if post.pages %}, {{ post.pages }}{% endif %}{% if post.venue and post.date and post.date != "1900-01-01" %}{% if post.collection == "teaching" and post.terms %}, {{ post.terms }}{% else %}, {{ post.date | date: "%Y" }}{% endif %}{% endif %}.{% endif %}
   {% if post.collection == "teaching" and post.terms and post.venue == nil and post.type != "Guest Lecture" %}{{ post.terms }}.{% endif %}
-  {% if post.type == "Guest Lecture" and post.course %}{{ post.course }}{% if post.terms %} {{ post.terms }}{% endif %}.{% endif %}
+  {% if post.type == "Guest Lecture" and post.course %}
+    {% assign clean_course = post.course | split: '(' | first | strip %}
+    {{ clean_course }}{% if post.terms %} {{ post.terms }}{% endif %}.
+  {% endif %}
   
 
   
