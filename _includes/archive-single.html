@@ -13,7 +13,7 @@
 {% endif %}
 
 
-<div style="margin-bottom: 15px;">
+<div style="margin-bottom: {% if post.collection == "teaching" %}15px{% elsif post.spacing_after %}{{ post.spacing_after }}{% else %}30px{% endif %};">
   {% if post.type == "Testimonial" %}
     <!-- Display testimonial content as quotes -->
     <div style="color: var(--academic-presentation-text-color); line-height: 1.4; font-size: 15px;">
@@ -21,7 +21,17 @@
     </div>
   {% else %}
     <!-- Standard publication/teaching format -->
-    {% if post.paperurl %}<a href="{{ post.paperurl }}" target="_blank" style="color: var(--academic-paper-title-color); text-decoration: none; {% if post.title_font_size %}font-size: {{ post.title_font_size }};{% endif %}">{{ title }}</a>{% else %}<span style="{% if post.title_font_size %}font-size: {{ post.title_font_size }};{% endif %}">{{ title }}</span>{% endif %}
+    {% if post.collection == "teaching" %}
+      {% assign clean_title = title | split: '(' | first | strip %}
+    {% else %}
+      {% assign clean_title = title %}
+    {% endif %}
+    {% if post.paperurl %}<a href="{{ post.paperurl }}" target="_blank" style="color: var(--academic-paper-title-color); text-decoration: none; {% if post.title_font_size %}font-size: {{ post.title_font_size }};{% endif %}">{{ clean_title }}</a>{% elsif post.collection == "teaching" %}<span style="{% if post.title_font_size %}font-size: {{ post.title_font_size }};{% endif %}">{{ clean_title }}</span>{% else %}<span style="font-weight: bold; {% if post.title_font_size %}font-size: {{ post.title_font_size }};{% endif %}">{{ clean_title }}</span>{% endif %}
+    {% if post.category %}
+      {% if post.category == "jmp" %}<span style="font-weight: normal;">(Job Market Paper)</span>{% endif %}
+      {% if post.category == "working_papers" %}<span style="font-weight: normal;">(Working Paper)</span>{% endif %}
+      {% if post.category == "work_in_progress" %}<span style="font-weight: normal;">(Work in Progress)</span>{% endif %}
+    {% endif %}
     {% if post.coauthors %}
     with 
     {% if post.coauthor_urls %}
@@ -67,21 +77,12 @@
     {% endif %}
   </div>
   
-  {% if post.abstract %}
-  <div style="margin-top: 15px;">
-    <strong>Abstract:</strong>
-    <div style="font-size: {% if post.abstract_font_size %}{{ post.abstract_font_size }}{% else %}14px{% endif %}; color: {% if post.abstract_color and post.abstract_color != '#000000' %}{{ post.abstract_color }}{% else %}var(--global-text-color, #666){% endif %}; line-height: 1.4; margin-top: 5px;">
-      {{ post.abstract }}
-    </div>
-  </div>
-  {% endif %}
-  
   {% if post.presentations %}
   <div style="margin-top: 15px;">
-    <strong style="color: var(--academic-presentation-text-color); font-size: 15px;">Presented at:</strong>
+    <strong style="color: var(--academic-presentation-text-color); {% if post.presentation_title_font_size %}font-size: {{ post.presentation_title_font_size }};{% elsif post.title_font_size %}font-size: {{ post.title_font_size }};{% else %}font-size: 18px;{% endif %}">Presented at:</strong>
     <div style="margin-top: 5px;">
       {% for presentation in post.presentations %}
-        <div style="font-size: 14px; color: var(--academic-presentation-text-color); margin-bottom: 3px;">
+        <div style="{% if post.presentation_font_size %}font-size: {{ post.presentation_font_size }};{% elsif post.title_font_size %}font-size: {{ post.title_font_size }};{% else %}font-size: 16px;{% endif %} color: var(--academic-presentation-text-color); margin-bottom: 3px;">
           {% if presentation.link %}
             <a href="{{ presentation.link }}" target="_blank" style="color: var(--academic-author-link-color); text-decoration: none;">{{ presentation.venue }}</a>
           {% else %}
@@ -91,6 +92,15 @@
           {% if presentation.date_range %}, {{ presentation.date_range }}{% elsif presentation.date %}, {{ presentation.date | date: '%B %Y' }}{% endif %}
         </div>
       {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  
+  {% if post.abstract %}
+  <div style="margin-top: 15px;">
+    <strong>Abstract:</strong>
+    <div style="font-size: 14px; color: {% if post.abstract_color and post.abstract_color != '#000000' %}{{ post.abstract_color }}{% else %}var(--global-text-color, #666){% endif %}; line-height: 1.4; margin-top: 5px;">
+      {{ post.abstract }}
     </div>
   </div>
   {% endif %}
