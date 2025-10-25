@@ -10,7 +10,7 @@ The best way to get in touch with me is via email or dropping me a message here.
 **Email:** shubham.karnawat@uci.edu
 
 <br><br>
-## Send me a feedback
+## Send me a message
 
 <form action="https://formspree.io/f/mvgwpldv" method="POST" style="max-width: 500px;">
   <div style="margin-bottom: 15px;">
