@@ -27,6 +27,7 @@
       {% assign clean_title = title %}
     {% endif %}
     {% if post.paperurl %}<a href="{{ post.paperurl }}" target="_blank" style="color: var(--academic-paper-title-color); text-decoration: none; {% if post.title_font_size %}font-size: {{ post.title_font_size }};{% endif %}">{{ clean_title }}</a>{% elsif post.collection == "teaching" %}<span style="{% if post.title_font_size %}font-size: {{ post.title_font_size }};{% endif %}">{{ clean_title }}</span>{% else %}<span style="font-weight: bold; {% if post.title_font_size %}font-size: {{ post.title_font_size }};{% endif %}">{{ clean_title }}</span>{% endif %}
+    {% if post.type == "Guest Lecture" %}<span style="font-weight: normal; font-style: italic;"> (Guest Lecture)</span>{% endif %}
     {% if post.category %}
       {% if post.category == "jmp" %}<span style="font-weight: normal;">(Job Market Paper)</span>{% endif %}
       {% if post.category == "working_papers" %}<span style="font-weight: normal;">(Working Paper)</span>{% endif %}
