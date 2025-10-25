@@ -1,5 +1,5 @@
 ---
-title: "Inflation is a Bad: A Simple Resolution to Forward Guidance Puzzle "
+title: "Inflation as a Bad: A Simple Resolution to Forward Guidance Puzzle "
 collection: publications
 category: work_in_progress
 # excerpt: 'This article... '
