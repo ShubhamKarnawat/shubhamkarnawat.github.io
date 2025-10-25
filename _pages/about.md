@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a PhD candidate in Economics at the University of California, Irvine, specializing in **Econometrics** and **Quantitative Methods**. My research focuses on developing novel econometric techniques, particularly in the areas of **Limited Dependent variables**, **Quantile regression**,  **Macroeconometris** and **Panel data analysis**. 
+I am a PhD candidate in Economics at the University of California, Irvine, specializing in **Econometrics** and **Quantitative Methods**. My research focuses on developing novel econometric techniques, particularly in the areas of **Limited Dependent variables**, **Quantile regression**,  **Macroeconometrics** and **Panel data analysis**. 
 
 I am on the 2025-2026 Job Market. My job market paper presents a general approach to modeling and estimation of time series models with discrete outcomes where errors are autoregressive and lagged dependence may be in observed discrete outcomes or latent dependent variable.(see [Research](/research/) for the paper).
 
